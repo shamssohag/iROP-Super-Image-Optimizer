@@ -1,1 +1,85 @@
 
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iROP Super Image Optimizer - Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans leading-relaxed">
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <!-- Header -->
+        <header class="text-center mb-12 border-b border-gray-800 pb-8">
+            <h1 class="text-3xl font-extrabold text-blue-400 mb-2">iROP SUPER IMAGE OPTIMIZER</h1>
+            <p class="text-gray-400 text-sm">Developer: <span class="text-white font-semibold">Shams Sohag</span></p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://www.linkedin.com/in/shamssohag" target="_blank" class="text-blue-400 hover:underline text-sm">LinkedIn</a>
+                <a href="https://github.com/shamssohag/iROP-Image_Optimizer" target="_blank" class="text-blue-400 hover:underline text-sm">GitHub</a>
+            </div>
+        </header>
+
+        <!-- About -->
+        <section class="mb-10 bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-xl font-bold text-yellow-400 mb-3">About The Project</h2>
+            <p class="text-gray-300">A professional desktop application for bulk image optimization (resizing, format conversion, and compression) built with Python and CustomTkinter. It features a modern Windows 11-style GUI, RAW image support, audit report generation, system tray integration, and real-time process controls.</p>
+        </section>
+
+        <!-- Features -->
+        <section class="mb-10 bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-xl font-bold text-yellow-400 mb-4">Features</h2>
+            <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                <li><strong class="text-white">Modern Windows 11 GUI:</strong> Clean, responsive CustomTkinter interface with fixed layouts and modern styling.</li>
+                <li><strong class="text-white">Camera RAW Support:</strong> Seamlessly reads and converts professional camera RAW files (Sony, Canon, Nikon, etc.).</li>
+                <li><strong class="text-white">Dynamic Resolution Control:</strong> Choose between keeping original dimensions, 2K, Full HD, Web, or Small sizes.</li>
+                <li><strong class="text-white">Advanced Format Conversion:</strong> Support for WEBP, AVIF, JPEG, PNG, and more.</li>
+                <li><strong class="text-white">Real-Time Controls:</strong> Pause, Resume, and Cancel operations smoothly on the fly.</li>
+                <li><strong class="text-white">System Tray Integration:</strong> Keep the application running silently in the background tray.</li>
+                <li><strong class="text-white">Auto-Generated Audit Report:</strong> Automatically generates a <code class="bg-gray-900 px-1 py-0.5 rounded text-green-400 text-sm">report.txt</code> file detailing file sizes and space savings.</li>
+            </ul>
+        </section>
+
+        <!-- Supported Formats -->
+        <section class="mb-10 bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-xl font-bold text-yellow-400 mb-3">Supported Formats</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300">
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <strong class="text-blue-400 block mb-1">Standard Formats</strong>
+                    .jpg, .jpeg, .png, .bmp, .webp, .ico, .tiff, .tif, .gif
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <strong class="text-blue-400 block mb-1">Next-Gen Formats</strong>
+                    .heic, .heif, .avif
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <strong class="text-blue-400 block mb-1">Camera RAW Formats</strong>
+                    .arw, .cr2, .cr3, .nef, .dng, .raf, .orf, .srf, .sr2
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use (.exe Version) -->
+        <section class="mb-10 bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-xl font-bold text-yellow-400 mb-3">How to Use (.exe Application)</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                <li>Locate the <code class="bg-gray-900 px-2 py-1 rounded text-green-400 text-sm">iROP Super Image Optimizer.exe</code> file on your computer.</li>
+                <li>Double-click the executable file to launch the graphical user interface instantly. <strong>No Python or terminal setup is required!</strong></li>
+                <li>Select your source folder and optional destination path using the <strong>Browse</strong> buttons.</li>
+                <li>Configure your target resolution, output format, and compression quality slider.</li>
+                <li>Click <strong>Start Optimization</strong> and monitor progress in real-time. Use <strong>Pause</strong>, <strong>Cancel</strong>, or <strong>New Start</strong> buttons as needed.</li>
+                <li>Closing the main window minimizes the application to the Windows system tray for background availability.</li>
+            </ol>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm pt-6 border-t border-gray-800">
+            <p>&copy; <span id="current-year"></span> iROP Image Optimizer. Open-source and free to use.</p>
+        </footer>
+    </div>
+
+    <script>
+        // বর্তমান বছর স্বয়ংক্রিয়ভাবে সেট করার জন্য জাভাস্ক্রিপ্ট
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
