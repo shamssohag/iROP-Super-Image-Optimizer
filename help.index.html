@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iROP Super Image Optimizer - Help & FAQ</title>
+  <title>iROP Super Image Converter & Optimizer - Help & FAQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter & Noto Sans Bengali -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     /* ================= CSS VARIABLES & THEMES ================= */
     :root {
@@ -27,7 +29,12 @@
       --accent-blue-hover: #2563EB;
       --code-bg: #0f172a;
       --code-text: #38bdf8;
-      --badge-bg: rgba(16, 185, 129, 0.15);
+      
+      --nav-bg: rgba(30, 41, 59, 0.7);
+      --nav-border: rgba(51, 65, 85, 0.8);
+      --hero-glow: radial-gradient(circle at 50% -20%, rgba(16, 185, 129, 0.18), transparent 70%);
+      --title-gradient: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
+      --badge-bg: rgba(16, 185, 129, 0.12);
       --badge-border: rgba(16, 185, 129, 0.35);
       --toggle-btn-bg: #1e293b;
     }
@@ -50,6 +57,11 @@
       --accent-blue-hover: #1d4ed8;
       --code-bg: #e2e8f0;
       --code-text: #0284c7;
+      
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --nav-border: #e2e8f0;
+      --hero-glow: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.12), transparent 70%);
+      --title-gradient: linear-gradient(135deg, #0f172a 40%, #065f46 100%);
       --badge-bg: rgba(16, 185, 129, 0.1);
       --badge-border: rgba(16, 185, 129, 0.3);
       --toggle-btn-bg: #ffffff;
@@ -65,43 +77,86 @@
     body {
       background-color: var(--bg-body);
       color: var(--text-main);
-      font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
-      padding: 40px 16px;
+      padding: 24px 16px 50px 16px;
     }
 
     .faq-container {
-      max-width: 840px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
-    /* Top Action Bar (Language + Theme Switcher) */
-    .top-bar {
+    /* ================= SMART TOP NAVBAR ================= */
+    .top-navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
+      background: var(--nav-bg);
+      border: 1px solid var(--nav-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 18px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    .brand-icon-box {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #10B981, #3B82F6);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+    }
+
+    .brand-icon-box svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .brand-text span {
+      color: var(--accent-green);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Language Switcher */
     .lang-switcher {
       display: inline-flex;
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 10px;
-      padding: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 3px;
     }
 
     .lang-btn {
       background: none;
       color: var(--text-muted);
       border: none;
-      padding: 7px 18px;
-      font-size: 14px;
+      padding: 6px 14px;
+      font-size: 13px;
       font-weight: 600;
-      border-radius: 8px;
+      border-radius: 7px;
       cursor: pointer;
       font-family: inherit;
     }
@@ -109,22 +164,23 @@
     .lang-btn.active {
       background-color: var(--accent-blue);
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+      box-shadow: 0 2px 6px rgba(59, 130, 246, 0.35);
     }
 
+    /* Theme Switcher */
     .theme-toggle-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background-color: var(--toggle-btn-bg);
       border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 10px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 600;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-family: inherit;
     }
 
     .theme-toggle-btn:hover {
@@ -132,48 +188,92 @@
     }
 
     .theme-icon {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
     }
 
-    /* Header */
-    .header {
+    /* ================= SMART HERO HEADER ================= */
+    .hero-header {
+      position: relative;
       text-align: center;
-      margin-bottom: 34px;
+      padding: 24px 16px 36px 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 160px;
+      background: var(--hero-glow);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .badge {
-      display: inline-block;
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       background: var(--badge-bg);
       color: var(--accent-green);
       border: 1px solid var(--badge-border);
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 9999px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+      letter-spacing: 0.4px;
     }
 
-    .header h1 {
-      font-size: 30px;
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulseAnimation 2s infinite;
+    }
+
+    @keyframes pulseAnimation {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 1;
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-      color: var(--text-main);
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
     }
 
-    .header p {
+    .hero-subtitle {
+      position: relative;
+      z-index: 1;
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 15.5px;
+      font-weight: 500;
+      max-width: 540px;
+      margin: 0 auto;
     }
 
-    /* Category Title */
+    /* ================= CATEGORY TITLE ================= */
     .category-title {
       font-size: 18px;
       font-weight: 700;
       color: var(--accent-green);
-      margin: 28px 0 14px;
+      margin: 32px 0 14px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--card-border);
       display: flex;
@@ -181,7 +281,7 @@
       gap: 8px;
     }
 
-    /* Accordion Item */
+    /* ================= ACCORDION ================= */
     .faq-item {
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -197,7 +297,7 @@
 
     .faq-item.active {
       border-color: var(--accent-green);
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.12);
     }
 
     .faq-question {
@@ -234,7 +334,7 @@
       color: var(--accent-green);
     }
 
-    /* Answer Area - Enhanced Visibility */
+    /* Answer Area */
     .faq-answer {
       max-height: 0;
       overflow: hidden;
@@ -247,7 +347,7 @@
       border-left: 4px solid var(--ans-border-left);
       color: var(--text-answer);
       font-size: 14.5px;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     .faq-answer-inner ul, .faq-answer-inner ol {
@@ -273,10 +373,10 @@
     .highlight-box {
       background: rgba(59, 130, 246, 0.08);
       border-left: 3px solid var(--accent-blue);
-      padding: 10px 14px;
-      border-radius: 0 6px 6px 0;
-      margin-top: 10px;
-      font-size: 13.5px;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 12px;
+      font-size: 14px;
     }
 
     /* Tab Switch Visibility */
@@ -291,7 +391,7 @@
     /* Footer */
     .footer {
       text-align: center;
-      margin-top: 48px;
+      margin-top: 50px;
       padding-top: 24px;
       border-top: 1px solid var(--card-border);
       color: var(--text-muted);
@@ -307,245 +407,262 @@
     .footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 25px;
+      }
+      .top-navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="faq-container">
     
-    <!-- Top Action Bar -->
-    <div class="top-bar">
-      <!-- Language Switcher -->
-      <div class="lang-switcher">
-        <button id="btn-en" class="lang-btn active" onclick="switchLanguage('en')">English</button>
-        <button id="btn-bn" class="lang-btn" onclick="switchLanguage('bn')">বাংলা</button>
+    <!-- Smart Top Navbar -->
+    <div class="top-navbar">
+      <div class="nav-brand">
+        <div class="brand-icon-box">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div class="brand-text">iROP <span>Optimizer</span></div>
       </div>
 
-      <!-- Dark / White Mode Switcher -->
-      <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
-        <svg id="themeIcon" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <span id="themeText">Light Mode</span>
-      </button>
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button id="btn-en" class="lang-btn active" onclick="switchLanguage('en')">English</button>
+          <button id="btn-bn" class="lang-btn" onclick="switchLanguage('bn')">বাংলা</button>
+        </div>
+
+        <!-- Dark / White Mode Switcher -->
+        <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">
+          <svg id="themeIcon" class="theme-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span id="themeText">Light</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Header -->
-    <div class="header">
-      <div class="badge">Desktop Pro Edition V 1.1</div>
-      <h1>iROP Super Image Optimizer</h1>
-      <p id="sub-title">Help Center & Frequently Asked Questions</p>
+    <!-- Smart Hero Header -->
+    <div class="hero-header">
+      <div class="badge">
+        <span class="pulse-dot"></span>
+        Desktop Pro Edition Ver. 1.1
+      </div>
+      <h1 class="hero-title">iROP Super Image Converter &amp; Optimizer</h1>
+      <p id="sub-title" class="hero-subtitle">হেল্প সেন্টার এবং সচরাচর জিজ্ঞাস্য প্রশ্নোত্তর</p>
     </div>
 
     <!-- ==================== ENGLISH SECTION ==================== -->
     <div id="lang-en" class="tab-content active">
       
-      <!-- Category 1 -->
-      <div class="category-title">General Information</div>
+      <!-- Category 1: Overview -->
+      <div class="category-title">1. Brief Overview</div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>What is iROP Super Image Optimizer?</span>
+          <span>Q1: Why choose iROP Super Image Converter & Optimizer over other tools?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            iROP Super Image Optimizer is a lightweight, high-performance desktop application designed to batch compress, resize, and convert images and camera RAW files. It helps significantly reduce file sizes while maintaining high visual quality.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Do I need an active internet connection to use the app?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            No. The application runs entirely offline. All image processing takes place directly on your computer, keeping your photos secure and private.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Which image formats are supported?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            The software supports a wide range of standard, modern, and camera RAW formats:
-            <ul>
-              <li><strong>Standard & Web:</strong> JPG, JPEG, PNG, WEBP, AVIF, HEIC, HEIF, BMP, TIFF, TIF, ICO, GIF.</li>
-              <li><strong>Camera RAW:</strong> ARW (Sony), CR2/CR3 (Canon), NEF (Nikon), DNG, RAF (Fujifilm), ORF (Olympus), SRF, SR2.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 2 -->
-      <div class="category-title">Usage & Settings</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How do I optimize a folder of images?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <ol>
-              <li>Click <strong>Browse</strong> next to <strong>Source</strong> and pick the folder with your images.</li>
-              <li><em>(Optional)</em> Click <strong>Browse</strong> next to <strong>Dest Path</strong> to specify a destination folder.</li>
-              <li>Select your desired <strong>Resolution</strong>, <strong>Dest Format</strong>, and <strong>Quality</strong>.</li>
-              <li>Click <strong>Start Optimization</strong> to begin batch processing.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>What happens if I leave the "Dest Path" empty?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            When left blank, the app runs in <strong>In-place Overwrite</strong> mode. It replaces the original files inside the source folder with the newly optimized versions. If you wish to keep your originals untouched, always specify a separate destination folder.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Does the app process images inside subfolders?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes. The app recursively scans all nested subfolders within your selected source folder and preserves the exact subfolder hierarchy inside the destination folder.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Will the destination folder open automatically after optimization? How do I control it?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes! At the bottom of the app interface, there is a checkbox option: <strong>"Automatically open destination folder on completion"</strong>.
-            <ul>
-              <li><strong>When checked (Default):</strong> As soon as the optimization finishes, your target folder (destination folder or source folder if in overwrite mode) will automatically pop open in File Explorer for instant access.</li>
-              <li><strong>When unchecked:</strong> The folder will not open automatically. You can review the finished status and audit report without your workflow being interrupted.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 3: NEW FEATURES -->
-      <div class="category-title">Advanced & Color Optimization</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Does the app strip EXIF metadata (camera info, GPS location)? Why is this important?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes! Equipped with modern EXIF stripping integration (via <span class="code-inline">piexif</span>), the optimizer cleanly removes camera metadata from image headers. When photos are captured on phones or DSLR cameras, substantial hidden metadata is stored inside—including camera model, shutter speed, timestamp, and sensitive GPS coordinates.
-            <ul>
-              <li><strong>Privacy Protection:</strong> Prevents your exact geographic coordinates and device identities from leaking when images are uploaded to the web.</li>
-              <li><strong>Lossless Size Reduction:</strong> Trims off several kilobytes to megabytes of non-image junk data without touching or degrading a single pixel of visual quality.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>How does the app handle Grayscale, CMYK to RGB, and ICC Color Profiles?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            The application incorporates advanced color management tailored for web performance and production workflows:
-            <ul>
-              <li><strong>Grayscale Conversion (Black & White):</strong> Converts 3-channel RGB color data into a single-channel grayscale profile with one click. This dramatically reduces byte density, making it ideal for documents, sketches, or monochrome graphics.</li>
-              <li><strong>CMYK to RGB Auto-Conversion:</strong> Print-oriented images (often in CMYK mode) frequently cause rendering glitches or bloated sizes in web browsers. The optimizer intelligently converts CMYK images to standard sRGB for flawless cross-device display.</li>
-              <li><strong>ICC Color Profile Stripping:</strong> Removes heavy embedded ICC color profiles, eliminating hidden profile overhead and ensuring lightning-fast website load times.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="category-title">Controls & Reports</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Which output format and quality should I pick?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <ul>
-              <li><strong>WEBP:</strong> Recommended for website uploads and everyday sharing (optimal size/quality balance).</li>
-              <li><strong>AVIF:</strong> Maximum space reduction using next-generation compression.</li>
-              <li><strong>JPEG / PNG:</strong> Ideal for universal compatibility or graphics with transparency.</li>
-              <li><strong>Original:</strong> Retains each photo's source format (RAW camera files convert to JPEG).</li>
-            </ul>
+            iROP Super Image Converter & Optimizer operates 100% offline with zero cloud upload risks and no file limits. Without requiring heavy editing suites, it natively converts standard JPEG/JPG, PNG, and professional camera RAW files into next-generation WEBP/AVIF formats, preserves exact nested folder structures, and strips unnecessary metadata to reduce file sizes by 50% to 80% with no loss in visual quality.
             <div class="highlight-box">
-              💡 <strong>Pro Tip:</strong> A quality slider setting of <strong>75 to 85</strong> is recommended for substantial file size savings (often 50% to 80%) with virtually no perceptible quality loss.
+              <strong>Intelligent Workflow:</strong> Features an intelligent skipping system that automatically bypasses previously processed files in the destination folder to prevent redundant re-rendering and save massive amounts of time. If a large batch is ever interrupted, you can reload your saved preset and effortlessly resume exactly where you left off.
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Category 2: General Info -->
+      <div class="category-title">2. General Information & Formats</div>
+
       <div class="faq-item">
         <button class="faq-question">
-          <span>Can I pause, resume, or cancel processing?</span>
+          <span>Q2: Do I need an active internet connection to use this application?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Yes. Use the <strong>Pause</strong> button to pause the current batch, <strong>Resume</strong> to carry on, or <strong>Cancel</strong> to safely terminate the process without corrupting current files.
+            No. The application is completely offline. None of your images are uploaded to any server or cloud, ensuring your data remains 100% private and secure on your local machine.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>Where can I view the space saved and file audit logs?</span>
+          <span>Q3: Which file formats are supported?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Real-time savings appear on the app summary panel. Once finished, a detailed <span class="code-inline">report.txt</span> file is automatically created inside your target directory showing individual before/after file sizes and compression percentage.
+            <ul>
+              <li><strong>Standard & Web Formats:</strong> JPG, JPEG, PNG, WEBP, AVIF, HEIC, HEIF, BMP, TIFF, TIF, ICO, GIF, TGA, and SVG.</li>
+              <li><strong>Camera RAW Formats:</strong> ARW (Sony), CR2/CR3 (Canon), NEF (Nikon), DNG, RAF (Fujifilm), ORF (Olympus), SRF, and SR2.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Settings & Presets -->
+      <div class="category-title">3. Settings & Preset Management</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q4: How does Preset Configuration Management work?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            By clicking the <strong>"Save Preset"</strong> button in the options panel, you can export your preferred resolution, output format, quality slider, and checkbox settings into a reusable <span class="code-inline">.json</span> file. You can restore these settings anytime via <strong>"Load Preset"</strong>. Additionally, checking <strong>"Include Paths"</strong> lets you save and load your source and destination directory paths alongside the processing options.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q5: How do the Resolution and Quality settings work?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <ul>
+              <li><strong>Resolution:</strong> Choose from presets including Keep Original, 2560px (2K), 1920px (Full HD), 1200px (Web), and 720px (Small). Larger images are proportionally downscaled using high-precision LANCZOS resampling while preserving the original aspect ratio.</li>
+              <li><strong>Quality Slider:</strong> A slider value between <strong>75 and 85</strong> is optimal, providing substantial byte reduction (50%–80%) with virtually no perceptible loss in sharpness.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q6: What happens if Dest Path is empty, and what does Auto Open do?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <ul>
+              <li><strong>Empty Dest Path:</strong> Operates in <em>In-place Overwrite</em> mode, replacing original images in the source directory. Always choose a destination folder if you wish to retain your original files untouched.</li>
+              <li><strong>Auto Open (Dest Folder):</strong> When checked, the application automatically launches your target directory in File Explorer the moment batch optimization finishes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Smart Batching & Live Monitor -->
+      <div class="category-title">4. Smart Batching & Live Monitor</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q7: What is the "Smart File Existence Check" and how does it function?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            During batch processing, the application intelligently inspects the destination directory to check whether an optimized version of the target file already exists. If found, the app automatically <strong>Skips</strong> the file to eliminate redundant encoding, saving system resources and dramatically cutting down processing time on large collections.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q8: How does the Live Monitor (Auto-Watch Mode) work?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            When <strong>"Live Monitor"</strong> is enabled, the application continuously watches your source directory in real time after the initial batch is completed. Whenever new image files are added or dropped into the folder, the app automatically detects and optimizes them in the background. A live stopwatch on the status bar keeps track of total monitoring active time.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q9: How is the report.txt audit file updated during Live Monitoring?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Whenever newly added files finish processing in Live Monitor mode, the engine uses a 10-second idle debounce delay. Once the folder stabilizes, it performs a single, clean rewrite of the <span class="code-inline">report.txt</span> file—complete with updated directory scan statistics, total saved space, and current destination folder size—followed by a success log in the console.
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 5: Color & Metadata -->
+      <div class="category-title">5. Advanced Color & Metadata Optimization</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q10: Why should I enable "Strip EXIF"?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Photos captured with phones and digital cameras contain hidden EXIF data, such as camera model, exposure settings, timestamps, and sensitive GPS geolocation. The <strong>"Strip EXIF"</strong> feature scrubs this non-image metadata without modifying image pixels, protecting personal privacy and trimming unnecessary file weight.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q11: Why is "CMYK to RGB" conversion important?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Images prepared for print commonly use the CMYK color space, which displays incorrectly in modern web browsers and bloats file sizes. Enabling <strong>"CMYK to RGB"</strong> automatically converts print profiles to web-standard sRGB for reliable color accuracy across all displays.
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 6: Controls & Reports -->
+      <div class="category-title">6. Process Controls & Audit Reports</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Q12: Can I pause, cancel, or close the app midway and resume later?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes, you have complete control over the workflow:
+            <ul>
+              <li><strong>Pause & Resume:</strong> Click <strong>Pause</strong> at any time to temporarily suspend optimization, and click <strong>Resume</strong> to seamlessly continue.</li>
+              <li><strong>Cancel & System Tray:</strong> You can safely abort the process using <strong>Cancel</strong>, or minimize the application to the <strong>System Tray</strong> for quiet background execution.</li>
+              <li><strong>Close & Resume Later:</strong> You can close the app at any point. When you reopen it and reload your saved preset, the <strong>Smart File Existence Check</strong> automatically detects previously optimized files in the destination folder and <strong>Skips</strong> them—effortlessly resuming right where you left off without redundant re-processing.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -555,169 +672,80 @@
     <!-- ==================== BENGALI SECTION ==================== -->
     <div id="lang-bn" class="tab-content">
       
-      <!-- Category 1 -->
-      <div class="category-title">সাধারণ পরিচিতি</div>
+      <!-- Category 1: Overview -->
+      <div class="category-title">১. সংক্ষিপ্ত বিবরণ</div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>iROP Super Image Optimizer কী এবং এটি কী কাজে লাগে?</span>
+          <span>প্রশ্ন ১: হাজার হাজার সফটওয়্যারের মাঝে iROP Super Image Converter & Optimizer কেন সেরা?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            iROP Super Image Optimizer হলো একটি ডেস্কটপ সফটওয়্যার, যার মাধ্যমে একসাথে শত শত বা হাজার হাজার ছবি এবং ক্যামেরা RAW ফাইল দ্রুত কম্প্রেস, রিসাইজ ও ফরম্যাট রূপান্তর করা যায়। এটি ছবির দৃশ্যমান কোয়ালিটি বজায় রেখে ফাইলের সাইজ উল্লেখযোগ্য পরিমাণে কমিয়ে দেয়।
+            iROP Super Image Converter & Optimizer সম্পূর্ণ অফলাইনে পরিচালিত একটি নিরাপদ ডেস্কটপ টুল, যেখানে ক্লাউড আপলোডের ঝুঁকি কিংবা ফাইল সংখ্যার কোনো সীমাবদ্ধতা নেই। ভারী এডিটিং সফটওয়্যার ছাড়াই এটি সরাসরি সাধারণ JPEG/JPG, PNG সহ পেশাদার ক্যামেরার RAW ফাইলকে আধুনিক WEBP/AVIF ফরম্যাটে রূপান্তর করে, সাব-ফোল্ডারের মূল কাঠামো হুবহু বজায় রাখে এবং ছবির দৃশ্যমান কোয়ালিটি অক্ষুণ্ণ রেখেই অপ্রয়োজনীয় মেটাডাটা মুছে ৫০% থেকে ৮০% পর্যন্ত সাইজ কমিয়ে দেয়।
+            <div class="highlight-box">
+              <strong>স্মার্ট ওয়ার্কফ্লো:</strong> এতে রয়েছে একটি ইন্টেলিজেন্ট স্কিপিং সিস্টেম, যা ডেস্টিনেশন ফোল্ডারে আগে থেকেই অপ্টিমাইজ করা ফাইল থাকলে তা স্বয়ংক্রিয়ভাবে Skip করে ডুপ্লিকেট রেন্ডারিং রোধ করে এবং বিপুল সময় বাঁচায়। ফলে হাজার হাজার ফাইলের ব্যাচ প্রসেসিং চলাকালে কোনো কারণে কাজ বন্ধ হলেও সংরক্ষিত প্রিসেট (Preset) লোড করে ঠিক যেখান থেকে থেমেছিল, সেখান থেকেই পুনরায় কাজ শুরু করা যায়।
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: General Info -->
+      <div class="category-title">২. সাধারণ পরিচিতি ও ফাইল ফরম্যাট</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ২: এটি ব্যবহার করতে কি ইন্টারনেট সংযোগের প্রয়োজন আছে?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            না। সফটওয়্যারটি সম্পূর্ণ অফলাইনে চলে। আপনার কোনো ছবি কোনো সার্ভার বা ইন্টারনেটে আপলোড হয় না, ফলে আপনার মূল্যবান ও ব্যক্তিগত ফাইল শতভাগ সুরক্ষিত থাকে।
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>এটি ব্যবহার করতে কি ইন্টারনেট সংযোগের প্রয়োজন আছে?</span>
+          <span>প্রশ্ন ৩: সফটওয়্যারটিতে কোন কোন ছবির ফরম্যাট সাপোর্ট করে?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            না। সফটওয়্যারটি সম্পূর্ণ অফলাইনে কাজ করে। আপনার কোনো ছবি কোনো সার্ভার বা ইন্টারনেটে আপলোড হয় না, ফলে আপনার ফাইল সম্পূর্ণ নিরাপদ ও ব্যক্তিগত থাকে।
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>সফটওয়্যারটিতে কোন কোন ছবির ফরম্যাট সাপোর্ট করে?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            সফটওয়্যারটিতে আধুনিক ও জনপ্রিয় প্রায় সব ফরম্যাট সমর্থিত:
             <ul>
-              <li><strong>সাধারণ ও ওয়েব ফরম্যাট:</strong> JPG, JPEG, PNG, WEBP, AVIF, HEIC, HEIF, BMP, TIFF, TIF, ICO এবং GIF।</li>
+              <li><strong>সাধারণ ও ওয়েব ফরম্যাট:</strong> JPG, JPEG, PNG, WEBP, AVIF, HEIC, HEIF, BMP, TIFF, TIF, ICO, GIF, TGA এবং SVG।</li>
               <li><strong>ক্যামেরা RAW ফরম্যাট:</strong> ARW (Sony), CR2/CR3 (Canon), NEF (Nikon), DNG, RAF (Fujifilm), ORF (Olympus), SRF ও SR2।</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Category 2 -->
-      <div class="category-title">ব্যবহার পদ্ধতি ও সেটিংস</div>
+      <!-- Category 3: Settings & Presets -->
+      <div class="category-title">৩. সেটিংস ও প্রিসেট ম্যানেজমেন্ট</div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>সফটওয়্যারটি দিয়ে কীভাবে ছবি অপ্টিমাইজ করব?</span>
+          <span>প্রশ্ন ৪: Preset Configuration Management-এর মাধ্যমে কীভাবে সেটিংস সংরক্ষণ করা যায়?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            <ol>
-              <li><strong>Source</strong>-এর পাশে <strong>Browse</strong> চেপে ছবির ফোল্ডারটি সিলেক্ট করুন।</li>
-              <li><em>(ঐচ্ছিক)</em> অপ্টিমাইজড ছবিগুলো আলাদা জায়গায় রাখতে <strong>Dest Path</strong>-এ ফোল্ডার সিলেক্ট করুন।</li>
-              <li>পছন্দমতো <strong>Resolution</strong>, <strong>Dest Format</strong> এবং <strong>Quality</strong> সেট করুন।</li>
-              <li><strong>Start Optimization</strong> বাটনে ক্লিক করুন।</li>
-            </ol>
+            আপনি অপশন প্যানেলের <strong>"Save Preset"</strong> বাটনে ক্লিক করে আপনার পছন্দসই রেজোলিউশন, ফরম্যাট, কোয়ালিটি এবং চেকবক্স সেটিংস একটি <span class="code-inline">.json</span> ফাইলে সেভ করে রাখতে পারেন। পরবর্তীতে <strong>"Load Preset"</strong> চেপে এক ক্লিকেই সেই কনফিগারেশন রিলোড করা যায়। এছাড়া <strong>"Include Paths"</strong> অপশনে টিক দেওয়া থাকলে সোর্স ও ডেস্টিনেশন ফোল্ডার পাথসহ সম্পূর্ণ প্রিসেট সংরক্ষণ ও লোড করা সম্ভব।
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>"Dest Path" খালি রাখলে কী হবে?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            ডেস্টিনেশন পাথ খালি রাখলে এটি <strong>In-place Overwrite</strong> মোডে চলবে, অর্থাৎ মূল ছবির জায়গায় অপ্টিমাইজ করা নতুন ফাইলটি প্রতিস্থাপিত হবে। মূল ছবি অক্ষত রাখতে চাইলে অবশ্যই একটি আলাদা ডেস্টিনেশন ফোল্ডার নির্বাচন করুন।
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>ফোল্ডারের ভেতরে সাব-ফোল্ডার থাকলে সেগুলো কি প্রসেস হবে?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            হ্যাঁ। সফটওয়্যারটি মূল ফোল্ডারের ভেতর থাকা সমস্ত সাব-ফোল্ডার স্বয়ংক্রিয়ভাবে স্ক্যান করে এবং আউটপুট ফোল্ডারেও হুবহু একই ফোল্ডার কাঠামো (Directory structure) বজায় রেখে ফাইল সেভ করে।
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>কাজ শেষে ডেস্টিনেশন ফোল্ডার কি অটোমেটিক ওপেন হবে? এটি কীভাবে অন বা অফ রাখব?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            হ্যাঁ! সফটওয়্যারের নিচের দিকে একটি চেকবক্স অপশন রয়েছে: <strong>"Automatically open destination folder on completion"</strong>।
-            <ul>
-              <li><strong>চেকবক্সে টিক দেওয়া থাকলে (ডিফল্ট):</strong> কম্প্রেশন শেষ হওয়ামাত্রই ডেস্টিনেশন ফোল্ডারটি (বা ওভাররাইটের ক্ষেত্রে সোর্স ফোল্ডার) স্ক্রিনে নিজে থেকেই ওপেন হয়ে যাবে, যাতে দ্রুত ফলাফল দেখা যায়।</li>
-              <li><strong>চেকবক্স থেকে টিক তুলে দিলে:</strong> কাজ শেষ হলেও ফোল্ডার অটোমেটিক ওপেন হবে না; আপনি আপনার পছন্দমতো সময়ে ফোল্ডারে প্রবেশ করতে পারবেন।</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 3: NEW FEATURES -->
-      <div class="category-title">অ্যাডভান্সড ও কালার অপ্টিমাইজেশন</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>সফটওয়্যারটি কি ছবির EXIF মেটাডাটা (ক্যামেরা তথ্য, GPS লোকেশন ইত্যাদি) রিমুভ করে? এর সুবিধা কী?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            হ্যাঁ! এতে <span class="code-inline">piexif</span> প্রযুক্তি ভিত্তিক শক্তিশালী EXIF মেটাডাটা স্ট্রিপার সংযুক্ত রয়েছে। ক্যামেরা বা স্মার্টফোনে ছবি তোলার পর ফাইলের ভেতরে ক্যামেরা মডেল, শাটার স্পিড, লেন্সের তথ্য, তারিখ এবং সংবেদনশীল GPS লোকেশন ডেটা সংরক্ষিত থাকে। মেটাডাটা রিমুভ করার সুবিধাগুলো হলো:
-            <ul>
-              <li><strong>ব্যক্তিগত গোপনীয়তা ও সুরক্ষা (Privacy):</strong> ছবি অনলাইনে শেয়ার বা ওয়েব সাইটে আপলোড করার সময় ব্যক্তিগত লোকেশন বা ক্যামেরার স্পর্শকাতর তথ্য ফাঁস হওয়া রোধ করে।</li>
-              <li><strong>কোয়ালিটি অক্ষুণ্ণ রেখে সাইজ হ্রাস:</strong> ছবির আসল পিক্সেল বা ভিজ্যুয়াল মানে বিন্দুমাত্র প্রভাব না ফেলেই অপ্রয়োজনীয় হিডেন ডাটা মুছে ফেলে ফাইলের ওজন উল্লেখযোগ্য হারে কমিয়ে দেয়।</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>কালার অপ্টিমাইজেশন, গ্রে-স্কেল (Grayscale), CMYK এবং ICC প্রোফাইল কীভাবে কাজ করে?</span>
-          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            অ্যাপ্লিকেশনটিতে উন্নত কালার ম্যানেজমেন্ট ও অপ্টিমাইজেশন সুবিধা রয়েছে:
-            <ul>
-              <li><strong>গ্রে-স্কেল রূপান্তর (Grayscale / B&W):</strong> রঙিন ছবিকে এক ক্লিকেই ব্ল্যাক অ্যান্ড হোয়াইট বা ১-চ্যানেল গ্রে-স্কেলে রূপান্তর করে ফাইলের সাইজ নাটকীয়ভাবে ছোট করে ফেলে। ডকুমেন্ট, স্কেচ বা একরঙা ছবির জন্য এটি অত্যন্ত কার্যকর।</li>
-              <li><strong>CMYK থেকে RGB স্বয়ংক্রিয় রূপান্তর:</strong> প্রেস বা প্রিন্টিংয়ের CMYK কালার মোডের ছবি সাধারণ ওয়েব ব্রাউজারে সাপোর্ট করে না বা সাইজ অনেক ভারী হয়। সফটওয়্যারটি স্বয়ংক্রিয়ভাবে সেগুলোকে ওয়েব স্ট্যান্ডার্ড sRGB মোডে রূপান্তর করে নির্ভুলভাবে প্রদর্শন নিশ্চিত করে।</li>
-              <li><strong>ICC কালার প্রোফাইল রিমুভাল:</strong> ফাইলে থাকা অপ্রয়োজনীয় ভারী কালার প্রোফাইল (ICC Profile) অপসারণ করে ছবির সাইজ আরও হালকা করে যাতে ওয়েবসাইট সুপারফাস্ট লোড হয়।</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="category-title">নিয়ন্ত্রণ ও রিপোর্ট</div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>কোন ফরম্যাট ও কোয়ালিটি নির্বাচন করা ভালো?</span>
+          <span>প্রশ্ন ৫: রেজোলিউশন (Resolution) ও কোয়ালিটি (Quality) স্লাইডার কীভাবে কাজ করে?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -725,42 +753,124 @@
         <div class="faq-answer">
           <div class="faq-answer-inner">
             <ul>
-              <li><strong>WEBP:</strong> ওয়েবসাইট এবং সাধারণ ব্যবহারের জন্য সবচেয়ে কার্যকর।</li>
-              <li><strong>AVIF:</strong> আধুনিক প্রযুক্তির কম্প্রেশন, যা সর্বোচ্চ পরিমাণ সাইজ সাশ্রয় করে।</li>
-              <li><strong>JPEG / PNG:</strong> সব ধরণের ডিভাইসে সর্বোচ্চ সামঞ্জস্য এবং ট্রান্সপারেন্ট ছবির ক্ষেত্রে উপযুক্ত।</li>
-              <li><strong>Original:</strong> ছবির মূল ফরম্যাট অপরিবর্তিত রাখবে (RAW ফাইলগুলো স্বয়ংক্রিয়ভাবে JPEG হবে)।</li>
+              <li><strong>Resolution:</strong> এতে Keep Original ছাড়াও 2560px (2K), 1920px (Full HD), 1200px (Web) এবং 720px (Small) প্রিসেট রয়েছে। মূল অ্যাসপেক্ট রেশিও ঠিক রেখে বড় ছবিগুলোকে ল্যানকজোস (LANCZOS) অ্যালগরিদমে নিখুঁতভাবে রিসাইজ করা হয়।</li>
+              <li><strong>Quality Slider:</strong> সাধারণত <strong>75 থেকে 85</strong>-এর মধ্যে রাখলে ছবির ভিজ্যুয়াল কোয়ালিটি অক্ষুণ্ণ রেখেই সর্বোচ্চ পরিমাণ ফাইল সাইজ সাশ্রয় হয়।</li>
             </ul>
-            <div class="highlight-box">
-              💡 <strong>টিপস:</strong> কোয়ালিটি স্লাইডারটি <strong>75 থেকে 85</strong>-এর মধ্যে রাখলে ছবির মানের কোনো দৃশ্যমান পরিবর্তন ছাড়াই ফাইল সাইজ ৬০% থেকে ৮০% পর্যন্ত কমে যায়।
-            </div>
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>প্রসেসিং চলাকালে কি কাজ সাময়িক বন্ধ বা বাতিল করা যাবে?</span>
+          <span>প্রশ্ন ৬: "Dest Path" খালি রাখলে কী হবে এবং অটো-ওপেন ফিচার কীভাবে কাজ করে?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            হ্যাঁ। প্রয়োজন অনুযায়ী আপনি <strong>Pause</strong> বাটন চেপে কাজ স্থগিত রাখতে পারেন, পুনরায় চালু করতে <strong>Resume</strong> এবং সম্পূর্ণ প্রক্রিয়া বন্ধ করতে <strong>Cancel</strong> বাটন চাপতে পারেন।
+            <ul>
+              <li><strong>Dest Path খালি রাখলে:</strong> এটি <em>In-place Overwrite</em> মোডে কাজ করবে, অর্থাৎ মূল ছবির জায়গায় অপ্টিমাইজড ফাইল প্রতিস্থাপিত হবে। মূল ফাইল অক্ষত রাখতে চাইলে অবশ্যই আলাদা ডেস্টিনেশন ফোল্ডার দিন।</li>
+              <li><strong>Auto Open (Dest Folder):</strong> চেকবক্সে টিক দেওয়া থাকলে প্রসেসিং শেষ হওয়ামাত্রই ডেস্টিনেশন ফোল্ডারটি স্ক্রিনে স্বয়ংক্রিয়ভাবে ওপেন হয়ে যাবে।</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Smart Batching & Live Monitor -->
+      <div class="category-title">৪. স্মার্ট ব্যাচিং ও লাইভ মনিটর</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ৭: Smart File Existence Check ফিচারটি কী এবং এটি কীভাবে কাজ করে?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            এই ফিচারের মাধ্যমে অ্যাপটি ব্যাচ প্রসেসিংয়ের সময় অত্যন্ত বুদ্ধিমত্তার সাথে যাচাই করে যে, কোনো ছবি ডেস্টিনেশন ফোল্ডারে ইতিমধ্যে অপ্টিমাইজড অবস্থায় আছে কি না। ফাইলটি আগে থেকেই তৈরি থাকলে অ্যাপটি অপ্রয়োজনীয় ডুপ্লিকেট প্রসেসিং এড়িয়ে সেটিকে স্বয়ংক্রিয়ভাবে <strong>Skip</strong> করে দেয়। এটি সিস্টেম রিসোর্স বাঁচায় এবং বড় ব্যাচের ক্ষেত্রে নাটকীয়ভাবে সময় সাশ্রয় করে।
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>কতটুকু সাইজ কমল তা কীভাবে বিস্তারিত জানব?</span>
+          <span>প্রশ্ন ৮: Live Monitor (Auto-Watch Mode) কীভাবে কাজ করে?</span>
           <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            অ্যাপ্লিকেশনের ডিসপ্লে প্যানেলেই রিয়েল-টাইমে মোট সাশ্রয়কৃত সাইজ দেখা যায়। এছাড়া কাজ শেষ হলে আউটপুট ফোল্ডারে স্বয়ংক্রিয়ভাবে একটি <span class="code-inline">report.txt</span> অডিট ফাইল সেভ হয়, যেখানে প্রতিটি ছবির আগের সাইজ, পরের সাইজ ও শতকরা কত ভাগ সাইজ কমল তা লিপিবদ্ধ থাকে।
+            <strong>"Live Monitor"</strong> অপশনে টিক দিয়ে অপ্টিমাইজেশন চালু করলে প্রাথমিক ব্যাচ শেষ হওয়ার পর অ্যাপটি ব্যাকগ্রাউন্ডে সোর্স ফোল্ডারটি রিয়েল-টাইমে নজরদারিতে রাখে। ফোল্ডারে নতুন কোনো ছবি ড্রপ বা পেস্ট করামাত্রই অ্যাপটি তা শনাক্ত করে এবং স্বয়ংক্রিয়ভাবে অপ্টিমাইজ করে নেয়। স্ট্যাটাস বারে একটি লাইভ স্টপওয়াচের মাধ্যমে এর মোট অ্যাক্টিভ সময় (Active Time) প্রদর্শিত হয়।
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ৯: লাইভ মনিটর চলাকালে report.txt ফাইলটি কীভাবে আপডেট হয়?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            লাইভ মনিটর চলাকালে ফোল্ডারে নতুন ফাইল আসা থামার পর সিস্টেম মাত্র ১০ সেকেন্ডের একটি স্মার্ট ডেবাউন্স ডিলে (Idle Delay) নিয়ে সম্পূর্ণ টপ সামারি (মোট ফাইল সংখ্যা, সাশ্রয়কৃত সাইজ এবং বর্তমান ডেস্টিনেশন ফোল্ডারের সাইজসহ) সহ <span class="code-inline">report.txt</span> ফাইলটি নিখুঁতভাবে রি-রাইট বা আপডেট করে নেয় এবং কনসোলে সাকসেস লগ দেখায়।
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 5: Color & Metadata -->
+      <div class="category-title">৫. অ্যাডভান্সড কালার ও মেটাডাটা অপ্টিমাইজেশন</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ১০: Strip EXIF মেটাডাটা ফিচারটি কেন ব্যবহার করবেন?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            স্মার্টফোন বা ডিএসএলআর ক্যামেরায় তোলা ছবিতে ক্যামেরা মডেল, শাটার স্পিড এবং সংবেদনশীল GPS লোকেশন ডেটা লুকানো থাকে। <strong>"Strip EXIF"</strong> ফিচারটি ছবির মূল পিক্সেল কোয়ালিটি নষ্ট না করেই অপ্রয়োজনীয় মেটাডাটা মুছে ফেলে, যা ব্যবহারকারীর ব্যক্তিগত গোপনীয়তা রক্ষা করে এবং ছবির ওজন আরও হালকা করে।
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ১১: CMYK to RGB কনভার্শন কেন জরুরি?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            প্রেস বা প্রিন্টিংয়ের জন্য তৈরি ছবিগুলো সাধারণত CMYK মোডে থাকে, যা সাধারণ ওয়েব ব্রাউজারে বিকৃত দেখায় বা অতিরিক্ত ফাইল সাইজ তৈরি করে। <strong>"CMYK to RGB"</strong> ফিচারটি এ ধরনের ছবিকে স্বয়ংক্রিয়ভাবে ওয়েব-স্ট্যান্ডার্ড sRGB মোডে রূপান্তর করে নির্ভুল ডিসপ্লে নিশ্চিত করে।
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 6: Controls & Reports -->
+      <div class="category-title">৬. নিয়ন্ত্রণ ও রিপোর্ট</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>প্রশ্ন ১২: প্রসেসিং চলাকালে কাজ সাময়িক বন্ধ, বাতিল কিংবা অ্যাপ বন্ধ (Close) করে পরে আবার শুরু করা যাবে কি?</span>
+          <svg class="faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            হ্যাঁ, কাজের পুরো নিয়ন্ত্রণ আপনার হাতে:
+            <ul>
+              <li><strong>Pause ও Resume:</strong> যেকোনো সময় <strong>Pause</strong> চেপে কাজ স্থগিত রাখতে পারেন এবং <strong>Resume</strong> চেপে পুনরায় সেখান থেকেই চালু করতে পারেন।</li>
+              <li><strong>Cancel ও সিস্টেম ট্রে:</strong> প্রয়োজনে <strong>Cancel</strong> চেপে কাজ বন্ধ করতে পারেন অথবা অ্যাপটি ব্যাকগ্রাউন্ডে <strong>System Tray</strong>-তে মিনিমাইজ করে রাখতে পারেন।</li>
+              <li><strong>অ্যাপ বন্ধ করে পরে শুরু করা:</strong> আপনি চাইলে কাজ চলাকালে অ্যাপটি পুরোপুরি বন্ধ (Close) করে দিতে পারেন। পরবর্তীতে সংরক্ষিত প্রিসেট (Preset) লোড করে পুনরায় রান করলে অ্যাপটির <strong>Smart File Existence Check</strong> ফিচারটি ডেস্টিনেশন ফোল্ডারে পূর্বে অপ্টিমাইজ হওয়া ফাইলগুলোকে স্বয়ংক্রিয়ভাবে <strong>Skip</strong> করে ঠিক যেখান থেকে থেমেছিল, সেখান থেকেই নতুন ফাইলগুলোর কাজ শুরু করে।</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -769,7 +879,7 @@
 
     <!-- Footer -->
     <div class="footer">
-      Developer: Shams Sohag • 
+      Developer : Shams Sohag • 
       <a href="https://github.com/shamssohag" target="_blank">GitHub</a> • 
       <a href="https://www.linkedin.com/in/shamssohag" target="_blank">LinkedIn</a>
     </div>
@@ -794,7 +904,7 @@
           if (otherAnswer) otherAnswer.style.maxHeight = null;
         });
 
-        // Open if it wasn't active
+        // Open if it was not active
         if (!isActive) {
           item.classList.add('active');
           answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -804,7 +914,15 @@
 
     // ================= Language Switcher Logic =================
     function switchLanguage(lang) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.remove('active');
+        el.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+          const ans = item.querySelector('.faq-answer');
+          if (ans) ans.style.maxHeight = null;
+        });
+      });
+      
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
 
       if (lang === 'bn') {
@@ -834,11 +952,11 @@
 
     function updateThemeUI(theme) {
       if (theme === 'light') {
-        themeText.innerText = 'Dark Mode';
+        themeText.innerText = 'Dark';
         // Moon Icon
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />`;
       } else {
-        themeText.innerText = 'Light Mode';
+        themeText.innerText = 'Light';
         // Sun Icon
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />`;
       }
