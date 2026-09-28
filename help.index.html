@@ -375,7 +375,7 @@
       border-left: 3px solid var(--accent-blue);
       padding: 12px 16px;
       border-radius: 0 8px 8px 0;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 14px;
     }
 
@@ -458,7 +458,7 @@
         Desktop Pro Edition Ver. 1.1
       </div>
       <h1 class="hero-title">iROP Super Image Converter &amp; Optimizer</h1>
-      <p id="sub-title" class="hero-subtitle">হেল্প সেন্টার এবং সচরাচর জিজ্ঞাস্য প্রশ্নোত্তর</p>
+      <p id="sub-title" class="hero-subtitle">Help Center & Frequently Asked Questions</p>
     </div>
 
     <!-- ==================== ENGLISH SECTION ==================== -->
@@ -477,6 +477,9 @@
         <div class="faq-answer">
           <div class="faq-answer-inner">
             iROP Super Image Converter & Optimizer operates 100% offline with zero cloud upload risks and no file limits. Without requiring heavy editing suites, it natively converts standard JPEG/JPG, PNG, and professional camera RAW files into next-generation WEBP/AVIF formats, preserves exact nested folder structures, and strips unnecessary metadata to reduce file sizes by 50% to 80% with no loss in visual quality.
+            <div class="highlight-box">
+              <strong>Live Optimization:</strong> With its built-in Live Monitor feature, the app watches your source directory in real time, instantly detecting and automatically optimizing newly dropped or pasted images.
+            </div>
             <div class="highlight-box">
               <strong>Intelligent Workflow:</strong> Features an intelligent skipping system that automatically bypasses previously processed files in the destination folder to prevent redundant re-rendering and save massive amounts of time. If a large batch is ever interrupted, you can reload your saved preset and effortlessly resume exactly where you left off.
             </div>
@@ -686,7 +689,9 @@
           <div class="faq-answer-inner">
             iROP Super Image Converter & Optimizer সম্পূর্ণ অফলাইনে পরিচালিত একটি নিরাপদ ডেস্কটপ টুল, যেখানে ক্লাউড আপলোডের ঝুঁকি কিংবা ফাইল সংখ্যার কোনো সীমাবদ্ধতা নেই। ভারী এডিটিং সফটওয়্যার ছাড়াই এটি সরাসরি সাধারণ JPEG/JPG, PNG সহ পেশাদার ক্যামেরার RAW ফাইলকে আধুনিক WEBP/AVIF ফরম্যাটে রূপান্তর করে, সাব-ফোল্ডারের মূল কাঠামো হুবহু বজায় রাখে এবং ছবির দৃশ্যমান কোয়ালিটি অক্ষুণ্ণ রেখেই অপ্রয়োজনীয় মেটাডাটা মুছে ৫০% থেকে ৮০% পর্যন্ত সাইজ কমিয়ে দেয়।
             <div class="highlight-box">
-              <strong>স্মার্ট ওয়ার্কফ্লো:</strong> এতে রয়েছে একটি ইন্টেলিজেন্ট স্কিপিং সিস্টেম, যা ডেস্টিনেশন ফোল্ডারে আগে থেকেই অপ্টিমাইজ করা ফাইল থাকলে তা স্বয়ংক্রিয়ভাবে Skip করে ডুপ্লিকেট রেন্ডারিং রোধ করে এবং বিপুল সময় বাঁচায়। ফলে হাজার হাজার ফাইলের ব্যাচ প্রসেসিং চলাকালে কোনো কারণে কাজ বন্ধ হলেও সংরক্ষিত প্রিসেট (Preset) লোড করে ঠিক যেখান থেকে থেমেছিল, সেখান থেকেই পুনরায় কাজ শুরু করা যায়।
+              <strong>লাইভ অপ্টিমাইজ:</strong> অ্যাপটির লাইভ মনিটর ফিচার রিয়েল-টাইমে সোর্স ফোল্ডারে আসা নতুন কোনো ছবি ড্রপ বা পেস্ট করামাত্রই তা শনাক্ত করে স্বয়ংক্রিয়ভাবে অপ্টিমাইজ করে নিতে সক্ষম।
+            </div>
+            <div class="highlight-box">
               <strong>স্মার্ট ওয়ার্কফ্লো:</strong> এতে রয়েছে একটি ইন্টেলিজেন্ট স্কিপিং সিস্টেম, যা ডেস্টিনেশন ফোল্ডারে আগে থেকেই অপ্টিমাইজ করা ফাইল থাকলে তা স্বয়ংক্রিয়ভাবে Skip করে ডুপ্লিকেট রেন্ডারিং রোধ করে এবং বিপুল সময় বাঁচায়। ফলে হাজার হাজার ফাইলের ব্যাচ প্রসেসিং চলাকালে কোনো কারণে কাজ বন্ধ হলেও সংরক্ষিত প্রিসেট (Preset) লোড করে ঠিক যেখান থেকে থেমেছিল, সেখান থেকেই পুনরায় কাজ শুরু করা যায়।
             </div>
           </div>
@@ -913,10 +918,13 @@
       });
     });
 
-    // ================= Language Switcher Logic =================
+    // ================= Language Switcher with Browser Memory (localStorage) =================
     function switchLanguage(lang) {
+      localStorage.setItem('irop_preferred_lang', lang);
+
       document.querySelectorAll('.tab-content').forEach(el => {
         el.classList.remove('active');
+        // Close any opened accordion item inside
         el.querySelectorAll('.faq-item').forEach(item => {
           item.classList.remove('active');
           const ans = item.querySelector('.faq-answer');
@@ -937,7 +945,7 @@
       }
     }
 
-    // ================= Theme Switcher (Dark / Light) =================
+    // ================= Theme Switcher with Browser Memory (localStorage) =================
     const themeBtn = document.getElementById('themeBtn');
     const themeText = document.getElementById('themeText');
     const themeIcon = document.getElementById('themeIcon');
@@ -948,6 +956,7 @@
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       
       html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('irop_preferred_theme', newTheme);
       updateThemeUI(newTheme);
     }
 
@@ -962,6 +971,18 @@
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />`;
       }
     }
+
+    // ================= On Page Load Initialization =================
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Language Memory Check
+      const savedLang = localStorage.getItem('irop_preferred_lang') || 'en';
+      switchLanguage(savedLang);
+
+      // 2. Theme Memory Check
+      const savedTheme = localStorage.getItem('irop_preferred_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeUI(savedTheme);
+    });
   </script>
 </body>
 </html>
